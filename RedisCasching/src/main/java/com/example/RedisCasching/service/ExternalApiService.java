@@ -1,5 +1,6 @@
 package com.example.RedisCasching.service;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,6 +24,7 @@ public class ExternalApiService {
         return "Unknown";
     }
 
+    @Cacheable(cacheNames = "userAgeCache", key = "#userId")
     public int getUserAge(String userId) {
         try {
             Thread.sleep(500);
